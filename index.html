@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>test</title>
+
+
+<script src="http://www.1hooo.com/js/library/jquery.min.js"></script>
+<script src="http://www-cs-students.stanford.edu/~tjw/jsbn/jsbn.js"></script>
+<script src="http://www-cs-students.stanford.edu/~tjw/jsbn/prng4.js"></script>
+<script src="http://www-cs-students.stanford.edu/~tjw/jsbn/rng.js"></script>
+<script src="http://www-cs-students.stanford.edu/~tjw/jsbn/rsa.js"></script>
+<script src="http://www-cs-students.stanford.edu/~tjw/jsbn/base64.js"></script>
+</head>
+
+<body>
+<input type="text" id="name">
+<input type="button" id="mb" value="Hello">
+<div id="keytxt"></div>
+
+</body>
+<script>
+$(document).ready(function(){
+var rsa_n = "D780B07DD040914E7D72D0232A97ADF0C866634F173285E225E182609C41338C97F64013F03494967B0A4909DF73046ED63E8187819F8715FBDA2AA1B98BA57F500617B9113CC916868C45F0CB9CE70F0E06668C64EAC8025C9B662BBC746CF73AECE3BCE9F07F688C81EB1C24A6872CE38E6FAA596C05CF80194B5D554E0383";  
+      
+	$("#mb").click(function(){  
+	  var before = new Date();
+	  var rsa = new RSAKey();
+	  rsa.setPublic(rsa_n, '10001');
+	  var res = rsa.encrypt($("#name").val());
+	  var after = new Date();
+	  if(res) {
+		$("#keytxt").html(linebrk(hex2b64(res), 64));
+	  }
+	});  
+});
+</script>
+</html>
